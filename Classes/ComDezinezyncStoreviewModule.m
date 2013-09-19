@@ -34,7 +34,7 @@
 	// you *must* call the superclass
 	[super startup];
 	
-	NSLog(@"[INFO] %@ loaded",self);
+	//NSLog(@"[INFO] %@ loaded",self);
 }
 
 -(void)shutdown:(id)sender
@@ -68,7 +68,7 @@
 
 -(void)_listenerAdded:(NSString *)type count:(int)count
 {
-	if (count == 1 && [type isEqualToString:@"my_event"])
+    if (count == 1 && [type isEqualToString:@"my_event"])
 	{
 		// the first (of potentially many) listener is being added 
 		// for event named 'my_event'
@@ -109,12 +109,16 @@
     SKStoreProductViewController *storeProductViewController = [[SKStoreProductViewController alloc] init];
     // Configure View Controller
     [storeProductViewController setDelegate:self];
+    
+    [self fireEvent:@"loading" withObject:nil];
     [storeProductViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : _appID} completionBlock:^(BOOL result, NSError *error) {
         if (error) {
+            [self fireEvent:@"error" withObject:[error userInfo]];
             NSLog(@"Error %@ with User Info %@.", error, [error userInfo]);
+            
         } else {
             // Present Store Product View Controller
-            //[self presentViewController:storeProductViewController animated:YES completion:nil];
+            [self fireEvent:@"willshow" withObject:nil];
             [[TiApp app] showModalController:storeProductViewController animated:YES];
         }
     }];
@@ -122,8 +126,8 @@
 }
 
 #pragma mark - SKStoreProductViewController Delegate
-
 - (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
+    [self fireEvent:@"willdimiss" withObject:nil];
     [[TiApp app] hideModalController:viewController animated:YES];
 }
 

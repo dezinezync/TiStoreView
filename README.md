@@ -39,10 +39,24 @@ USING YOUR MODULE IN CODE
 
 To use your module in code, you will need to require it. 
 
-For example,
+### Example
 
 	var TiStoreView = require('com.dezinezync.storeview');
 	TiStoreView.showStore('**********');
+	
+### Events
+
+	TiStoreView.addEventListener('loading', callback)
+	//Notifies when data is being loaded over the network
+	
+	TiStoreView.addEventListener('willshow', callback)
+	//Notifies when the modal is ready to be shown
+	
+	TiStoreView.addEventListener('willdismiss', callback)
+	//Notifies when the modal is ready to be dismissed (user action: Cancel button or such)
+	
+	TiStoreView.addEventListener('error', callback)
+	//Notifies when an error has occurred.
 	
 The example app uses Yelp's app ID for proof-of-concept purposes.
 
