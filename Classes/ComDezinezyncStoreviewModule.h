@@ -9,7 +9,7 @@
 
 @interface ComDezinezyncStoreviewModule : TiModule <SKStoreProductViewControllerDelegate>
 {
-    NSMutableString *appID;
+
 }
 
 @end

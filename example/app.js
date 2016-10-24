@@ -1,15 +1,13 @@
 var TiStoreView = require('com.dezinezync.storeview');
-Ti.API.info("module is => " + TiStoreView);
+var appID = "284910350";
 
 // open a single window
 var win = Ti.UI.createWindow({
 	backgroundColor:'white'
 });
 
-var appID = "284910350";
-
 var button = Ti.UI.createButton({
-	title: "Open App"
+	title: "Open Ap in AppStore"
 });
 
 TiStoreView.addEventListener('loading', function(e) {
@@ -32,8 +30,9 @@ button.addEventListener("click", function() {
 	
 	Ti.API.info("Showing store for AppID: " + appID);
 
-	TiStoreView.showStore(appID);
-
+	TiStoreView.openProductDialog({
+        'id': appID // SKStoreProductParameterITunesItemIdentifier
+    });
 });
 
 win.add(button);

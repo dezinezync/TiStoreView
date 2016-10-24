@@ -28,7 +28,7 @@ Register your module with your application by editing `tiapp.xml` and adding you
 Example:
 
 	<modules>
-		<module version="0.1">com.dezinezync.storeview</module>
+		<module version="1.1.0">com.dezinezync.storeview</module>
 	</modules>
 
 When you run your project, the compiler will know automatically compile in your module
@@ -42,7 +42,13 @@ To use your module in code, you will need to require it.
 ### Example
 
 	var TiStoreView = require('com.dezinezync.storeview');
-	TiStoreView.showStore('**********');
+    TiStoreView.openProductDialog({
+        'id': '**********', // SKStoreProductParameterITunesItemIdentifier
+        'ct': '', // SKStoreProductParameterCampaignToken
+        'pt': '', // SKStoreProductParameterProviderToken
+        'at':'', // SKStoreProductParameterAffiliateToken
+        'advp': '' // SKStoreProductParameterAdvertisingPartnerToken
+    });
 	
 ### Events
 
