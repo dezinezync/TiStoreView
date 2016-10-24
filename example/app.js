@@ -7,14 +7,22 @@ var win = Ti.UI.createWindow({
 });
 
 var button = Ti.UI.createButton({
-	title: "Open Ap in AppStore"
+	title: "Open App in AppStore",
+    top: 100
+});
+
+var loader = Ti.UI.createActivityIndicator({
+    style: Ti.UI.ActivityIndicatorStyle.DARK,
+    bottom: 100,
 });
 
 TiStoreView.addEventListener('loading', function(e) {
+    loader.show();
 	console.log(e);
 });
 
 TiStoreView.addEventListener('willshow', function(e) {
+    loader.hide();
 	console.log(e);
 });
 
@@ -30,10 +38,11 @@ button.addEventListener("click", function() {
 	
 	Ti.API.info("Showing store for AppID: " + appID);
 
-	TiStoreView.openProductDialog({
+	TiStoreView.showProductDialog({
         'id': appID // SKStoreProductParameterITunesItemIdentifier
     });
 });
 
 win.add(button);
+win.add(loader);
 win.open();

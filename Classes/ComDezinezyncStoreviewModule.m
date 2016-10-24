@@ -29,7 +29,7 @@
 -(void)showStore:(id)value
 {
     ENSURE_SINGLE_ARG(value, NSString);
-    NSLog(@"[WARN] TiStoreView: showStore('<app-id>') is deprecated in 1.1.0, use showProductDialog({appID: '<app-id>'}) instead.");
+    NSLog(@"[WARN] TiStoreView: showStore('%@') is deprecated in 1.1.0. Use showProductDialog({'id': '%@'}) instead.", value, value);
     
     [self showProductDialog:@[@{SKStoreProductParameterITunesItemIdentifier: [TiUtils stringValue:value]}]];
 }

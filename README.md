@@ -42,7 +42,7 @@ To use your module in code, you will need to require it.
 ### Example
 
 	var TiStoreView = require('com.dezinezync.storeview');
-    TiStoreView.openProductDialog({
+    TiStoreView.showProductDialog({
         'id': '**********', // SKStoreProductParameterITunesItemIdentifier
         'ct': '', // SKStoreProductParameterCampaignToken
         'pt': '', // SKStoreProductParameterProviderToken
