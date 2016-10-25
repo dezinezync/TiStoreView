@@ -26,10 +26,11 @@ REGISTER YOUR MODULE
 
 Register your module with your application by editing `tiapp.xml` and adding your module.
 Example:
-
-	<modules>
-		<module version="1.1.0">com.dezinezync.storeview</module>
-	</modules>
+```xml
+<modules>
+    <module version="1.1.0">com.dezinezync.storeview</module>
+</modules>
+```
 
 When you run your project, the compiler will know automatically compile in your module
 dependencies and copy appropriate image assets into the application.
@@ -40,30 +41,32 @@ USING YOUR MODULE IN CODE
 To use your module in code, you will need to require it. 
 
 ### Example
+```js
+var TiStoreView = require('com.dezinezync.storeview');
+TiStoreView.showProductDialog({
+    'id': '**********', // SKStoreProductParameterITunesItemIdentifier
+    'ct': '', // SKStoreProductParameterCampaignToken
+    'pt': '', // SKStoreProductParameterProviderToken
+    'at':'', // SKStoreProductParameterAffiliateToken
+    'advp': '' // SKStoreProductParameterAdvertisingPartnerToken
+});
+```
 
-	var TiStoreView = require('com.dezinezync.storeview');
-    TiStoreView.showProductDialog({
-        'id': '**********', // SKStoreProductParameterITunesItemIdentifier
-        'ct': '', // SKStoreProductParameterCampaignToken
-        'pt': '', // SKStoreProductParameterProviderToken
-        'at':'', // SKStoreProductParameterAffiliateToken
-        'advp': '' // SKStoreProductParameterAdvertisingPartnerToken
-    });
-	
 ### Events
+```js
+// Notifies when data is being loaded over the network
+TiStoreView.addEventListener('loading', callback)
+	
+// Notifies when the modal is ready to be shown
+TiStoreView.addEventListener('willshow', callback)
+	
+// Notifies when the modal is ready to be dismissed (user action: Cancel button or such)
+TiStoreView.addEventListener('willdismiss', callback)
+	
+// Notifies when an error has occurred.
+TiStoreView.addEventListener('error', callback)
+```
 
-	TiStoreView.addEventListener('loading', callback)
-	//Notifies when data is being loaded over the network
-	
-	TiStoreView.addEventListener('willshow', callback)
-	//Notifies when the modal is ready to be shown
-	
-	TiStoreView.addEventListener('willdismiss', callback)
-	//Notifies when the modal is ready to be dismissed (user action: Cancel button or such)
-	
-	TiStoreView.addEventListener('error', callback)
-	//Notifies when an error has occurred.
-	
 The example app uses Yelp's app ID for proof-of-concept purposes.
 
 LICENSE
